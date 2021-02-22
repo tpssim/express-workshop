@@ -4,6 +4,7 @@ import bodyParser from 'body-parser';
 import routes from './routes';
 import { serverPort } from './config';
 import { createDataMiddleware } from './middleware/data';
+import { LoggerMiddleware } from './middleware/logger';
 
 const app = express();
 const port = serverPort;
@@ -11,6 +12,7 @@ const port = serverPort;
 app.use(cors());
 app.use(createDataMiddleware());
 app.use(bodyParser.json());
+app.use(LoggerMiddleware);
 
 app.use('/api', routes);
 

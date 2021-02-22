@@ -23,10 +23,15 @@ We'll want to add some actual endpoints that fetch data for us.
 
 - Add endpoints for fetching guilds
   - Fetch all guilds
-  - Fetch guilds by id
+  - Fetch guild by id
+  - Search guilds
 
 - Add endpoint for adding new guilds
 - Add an endpoint for deleting guilds
+
+### Error handling
+
+- Improve on our API's error handling by creating a custom HTTP-error.
 
 ### Add a database
 

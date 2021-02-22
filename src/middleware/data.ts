@@ -13,12 +13,12 @@ const guildsKey = 'guilds_mem_key';
 export const createDataMiddleware = () => {
   memoryCache.put(guildsKey, mockGuilds);
   return (
-    _: Request,
+    req: Request,
     res: Response,
     next: NextFunction
   ) => {
-    if (!res.locals['db']) {
-      res.locals['db'] = {
+    if (!req.app.locals['db']) {
+      req.app.locals['db'] = {
         setGuilds: (newGuilds: Guild[]) => memoryCache.put(guildsKey, newGuilds),
         getGuilds: () => memoryCache.get(guildsKey)
       };

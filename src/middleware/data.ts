@@ -7,8 +7,11 @@ export interface DBObject {
   getGuilds: () => typeof mockGuilds;
   setGuilds: (guilds: Guild[]) => void;
 }
+
+const guildsKey = 'guilds_mem_key';
+
 export const createDataMiddleware = () => {
-  memoryCache.put('guilds', mockGuilds);
+  memoryCache.put(guildsKey, mockGuilds);
   return (
     _: Request,
     res: Response,
@@ -16,8 +19,8 @@ export const createDataMiddleware = () => {
   ) => {
     if (!res.locals['db']) {
       res.locals['db'] = {
-        setGuilds: (newGuilds: Guild[]) => memoryCache.put('guilds', newGuilds),
-        getGuilds: () => memoryCache.get('guilds'),
+        setGuilds: (newGuilds: Guild[]) => memoryCache.put(guildsKey, newGuilds),
+        getGuilds: () => memoryCache.get(guildsKey)
       };
     }
 

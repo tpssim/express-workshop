@@ -4,11 +4,11 @@ import { ulid } from 'ulid';
 
 const routes = router();
 
-routes.get('/', (req: Request, res: Response) => {
+routes.get('/', async (req: Request, res: Response) => {
   res.status(200).send('Hello world');
 });
 
-routes.get('/ulid', (req: Request, res: Response) => {
+routes.get('/ulid', async (req: Request, res: Response) => {
   res.status(200).send(ulid())
 })
 

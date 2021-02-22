@@ -4,7 +4,7 @@ import mockGuilds from '../data/mocks/guilds.json';
 import { Guild } from '../data/types';
 
 export interface DBObject {
-  getGuilds: () => typeof mockGuilds;
+  getGuilds: () => Guild[];
   setGuilds: (guilds: Guild[]) => void;
 }
 

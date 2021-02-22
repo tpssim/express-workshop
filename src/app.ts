@@ -3,11 +3,13 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import routes from './routes';
 import { serverPort } from './config';
+import { createDataMiddleware } from './middleware/data';
 
 const app = express();
 const port = serverPort;
 
 app.use(cors());
+app.use(createDataMiddleware());
 app.use(bodyParser.json());
 
 app.use('/api', routes);

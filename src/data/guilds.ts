@@ -1,20 +1,20 @@
-import mockGuilds from './mocks/guilds.json';
-type Guild = typeof mockGuilds[0];
+import { DBObject } from '../middleware/data';
+import { Guild } from './types';
 
-const getGuildData = async (): Promise<Guild[]> => {
+const getGuildData = async (db: DBObject): Promise<Guild[]> => {
   // Database operations in JavaScript are mainly asynchronous by nature
   // either through callbacks or promise-implementations.
-  return Promise.resolve(mockGuilds);
+  return Promise.resolve(db.getGuilds());
 }
 
 
-export const getGuilds = async (): Promise<Guild[]> => {
-  return getGuildData();
+export const getGuilds = async (db: DBObject): Promise<Guild[]> => {
+  return getGuildData(db);
 }
 
 
-export const getGuildById = async (id: string): Promise<Guild | void> => {
-  const guilds = await getGuildData();
+export const getGuildById = async (db: DBObject, id: string): Promise<Guild | void> => {
+  const guilds = await getGuildData(db);
   const match = guilds.find(item => item.id === id);
 
   if (!match) {
@@ -25,7 +25,7 @@ export const getGuildById = async (id: string): Promise<Guild | void> => {
 }
 
 
-export const searchGuilds = async (queryParam: keyof Guild, queryValue: string): Promise<Guild[]> => {
+export const searchGuilds = async (db: DBObject, query: Partial<Guild>): Promise<Guild[]> => {
   // Search the guilds for items that match the search terms.
   return []
 }
